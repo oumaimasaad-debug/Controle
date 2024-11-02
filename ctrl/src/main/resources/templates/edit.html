@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modifier le Produit</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h2>Modifier le Produit</h2>
+
+  <!-- Formulaire d'édition de promotion -->
+  <form action="#" th:action="@{/updateProduct/{id}(id=${produit.id})}" th:object="${produit}" method="post">
+    <!-- Champ pour le nom du produit -->
+
+    <div class="form-group">
+      <label for="name">Nom du Produit</label>
+      <input type="text" class="form-control" id="name" name="name" th:value="${name}" required>
+    </div>
+
+    <!-- Champ pour le prix du produit -->
+    <div class="form-group">
+      <label for="prix">Prix</label>
+      <input type="number" step="1" class="form-control" id="prix" name="prix" th:value="${prix}" required>
+    </div>
+
+    <!-- Champ pour la description du produit -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="3" required th:text="${description}"></textarea>
+    </div>
+
+    <!-- Bouton de soumission -->
+    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    <a href="/produits" class="btn btn-secondary">Annuler</a>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

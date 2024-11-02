@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter un Produit</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+  <h2>Ajouter un Produit</h2>
+  <form action="#" th:action="@{/addProduct}" method="post">
+    <div th:object="${produit}" class="form-group">
+      <label for="name">Nom :</label>
+      <input type="text" id="name" th:field="*{name}" class="form-control" required/>
+      <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+    </div>
+    <div th:object="${produit}" class="form-group">
+      <label for="description">Description :</label>
+      <textarea id="description" th:field="*{description}" class="form-control" required></textarea>
+      <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+    </div>
+    <div th:object="${produit}" class="form-group">
+      <label for="prix">Prix :</label>
+      <input type="number" id="prix" th:field="*{prix}" class="form-control" step="0.01" required placeholder="Entrez le prix" />
+      <span th:if="${#fields.hasErrors('prix')}" th:errors="*{prix}" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter Produit</button>
+  </form>
+
+  <h2 class="mt-4">Ajouter une association Produit-Promotion</h2>
+  <form action="/addProductPromo" method="post" class="form-inline">
+    <div class="form-group mr-2">
+      <label for="produitId" class="mr-2">ID du Produit :</label>
+      <input type="number" id="produitId" name="produitId" class="form-control" required>
+    </div>
+    <div class="form-group mr-2">
+      <label for="promotionId" class="mr-2">ID de la Promotion :</label>
+      <input type="number" id="promotionId" name="promotionId" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter Association</button>
+  </form>
+
+  <h2 class="mt-4">Ajouter une Promotion</h2>
+  <form action="#" th:action="@{/addPromotion}" th:object="${promotion}" method="post">
+    <div class="form-group">
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" th:field="*{nom}" class="form-control" required />
+      <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+      <label for="dateDebut">Date Début :</label>
+      <input type="date" id="dateDebut" th:field="*{dateDebut}" class="form-control" required />
+      <span th:if="${#fields.hasErrors('dateDebut')}" th:errors="*{dateDebut}" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+      <label for="dateFin">Date Fin :</label>
+      <input type="date" id="dateFin" th:field="*{dateFin}" class="form-control" required />
+      <span th:if="${#fields.hasErrors('dateFin')}" th:errors="*{dateFin}" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter Promotion</button>
+  </form>
+
+  <p class="mt-4">
+    <a href="/produits" class="btn btn-secondary">Retour à la liste des produits</a>
+  </p>
+</div>
+
+<!-- Optionnel : Scripts Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

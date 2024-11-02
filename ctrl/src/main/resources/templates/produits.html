@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Produits</title>
+    <!-- Ajouter le lien vers le CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="my-4">Liste des Produits</h2>
+    <div th:switch="${produits}">
+        <h3 th:case="null" class="text-danger">Aucun produit trouvé !</h3>
+        <div th:case="*">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Promotions</th>
+                    <th>Éditer</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="produit : ${produits}">
+                    <td th:text="${produit.name}"></td>
+                    <td th:text="${produit.description}"></td>
+                    <td th:text="${produit.prix}"></td>
+                    <td><a th:href="@{/showprodpromo/{id}(id=${produit.id})}" class="btn btn-info btn-sm">Liste des promotions</a></td>
+                    <td><a th:href="@{/updateProduct/{id}(id=${produit.id})}" class="btn btn-warning btn-sm">Éditer</a></td>
+                    <td><a th:href="@{/deleteProduct/{id}(id=${produit.id})}" class="btn btn-danger btn-sm">Supprimer</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p>
+        <a href="/addProduct" class="btn btn-success">Ajouter</a>
+        <a href="/Promotionstable" class="btn btn-success">affcher toutes les promotions</a>
+    </p>
+</div>
+
+<!-- Ajouter le JavaScript de Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
